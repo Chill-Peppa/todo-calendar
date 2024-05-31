@@ -34,7 +34,15 @@
 }
 
 .right {
-  composes: left;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.right:hover {
+  opacity: 0.7;
+  transition: all 1s linear;
 }
 
 .weekDays {
