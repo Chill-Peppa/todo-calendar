@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './calendar.module.css';
+import './calendar.css';
 import left from '../../assets/images/left-arrow.svg';
 import right from '../../assets/images/right-arrow.svg';
 
@@ -48,45 +48,39 @@ const Calendar = () => {
   };
 
   return (
-    <section className={styles.calender}>
-      <div className={styles.header}>
-        <h1 className={styles.currentData}>{returnDate()}</h1>
-        <div className={styles.arrowsContainer}>
-          <button
-            id="prev"
-            onClick={onPrevButtonClick}
-            className={styles.button}>
+    <section className="calendar">
+      <div className="calendar__header">
+        <h1 className="calendar__title">{returnDate()}</h1>
+        <div className="calendar__button-container">
+          <button onClick={onPrevButtonClick} className="calendar__button">
             <img
               src={left as unknown as string}
               alt="left arrow"
-              className={styles.left}
+              className="calendar__prev"
             />
           </button>
-          <button
-            id="next"
-            onClick={onNextButtonClick}
-            className={styles.button}>
+          <button onClick={onNextButtonClick} className="calendar__button">
             <img
               src={right as unknown as string}
               alt="right arrow"
-              className={styles.right}
+              className="calendar__next"
             />
           </button>
         </div>
       </div>
 
-      <div className={styles.main}>
-        <ul className={styles.weekDays}>
+      <div className="calendar__main">
+        <ul className="calendar__weekdays">
           {weekDays.map((weekDay, index) => (
-            <li className={styles.weekDay} key={index}>
+            <li className="calendar__weekday" key={index}>
               {weekDay}
             </li>
           ))}
         </ul>
 
-        <ul className={styles.days}>
+        <ul className="calendar__days">
           {getAllDaysInMonth().map((day, index) => (
-            <li className={styles.day} key={index}>
+            <li className="calendar__day" key={index}>
               {day}
             </li>
           ))}

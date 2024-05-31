@@ -1,4 +1,4 @@
-.calender {
+.calendar {
   background-color: #fff;
   width: 500px;
   border-radius: 15px;
@@ -6,22 +6,22 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.header {
+.calendar__header {
   display: flex;
   justify-content: space-between;
 }
 
-.currentData {
+.calendar__title {
   font-weight: 600;
 }
 
-.arrowsContainer {
+.calendar__button-container {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.button {
+.calendar__button {
   display: flex;
   align-items: center;
   border: none;
@@ -29,29 +29,29 @@
   cursor: pointer;
 }
 
-.left {
+.calendar__next {
   height: 25px;
   width: 25px;
   opacity: 1;
 }
 
-.left:hover {
+.calendar__next:hover {
   opacity: 0.65;
   transition: all 1s linear;
 }
 
-.right {
+.calendar__prev {
   height: 25px;
   width: 25px;
   opacity: 1;
 }
 
-.right:hover {
+.calendar__prev:hover {
   opacity: 0.7;
   transition: all 1s linear;
 }
 
-.weekDays {
+.calendar__weekdays {
   margin: 35px 0 20px 0;
   list-style: none;
   font-weight: 600;
@@ -59,7 +59,7 @@
   justify-content: space-between;
 }
 
-.days {
+.calendar__days {
   list-style: none;
   font-weight: 500;
   display: grid;
@@ -68,7 +68,7 @@
   gap: 20px 37px;
 }
 
-.day {
+.calendar__day {
   border: 1px solid #a6bdd7;
   padding: 2px;
   display: flex;
