@@ -21,22 +21,28 @@
   gap: 20px;
 }
 
+.button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 .left {
   height: 25px;
   width: 25px;
-  cursor: pointer;
   opacity: 1;
 }
 
 .left:hover {
-  opacity: 0.7;
+  opacity: 0.65;
   transition: all 1s linear;
 }
 
 .right {
   height: 25px;
   width: 25px;
-  cursor: pointer;
   opacity: 1;
 }
 
