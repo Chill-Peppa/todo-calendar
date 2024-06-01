@@ -1,0 +1,37 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(76, 76, 255, 0.2);
+  max-width: 720px;
+  max-height: 718px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 40px 40px 0 40px;
+  z-index: 50;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid green;
+}
+
+.modal__title {
+}
+
+.modal__close {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  cursor: pointer;
+}
+
+.modal__close-icon {
+  width: 30px;
+  height: 30px;
+}

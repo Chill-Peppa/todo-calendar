@@ -1,8 +1,8 @@
 .calendar {
   background-color: #fff;
-  width: 500px;
+  max-width: 500px;
   border-radius: 15px;
-  padding: 40px 30px;
+  padding: 40px 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -59,20 +59,40 @@
   justify-content: space-between;
 }
 
+@media screen and (max-width: 500px) {
+  .calendar__weekdays {
+    width: 97%;
+    align-items: center;
+  }
+}
+
 .calendar__days {
   list-style: none;
   font-weight: 500;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 20px 37px;
 }
 
+@media screen and (max-width: 500px) {
+  .calendar__days {
+    gap: 20px 10px;
+  }
+}
+
 .calendar__day {
-  border: 1px solid #a6bdd7;
   padding: 2px;
   display: flex;
   justify-content: center;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   cursor: pointer;
+}
+
+.calendar__day_event {
+  border-bottom: 3px solid #a6bdd7;
+}
+
+.calendar__week-deals {
+  margin-top: 20px;
 }

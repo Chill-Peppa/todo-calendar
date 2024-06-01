@@ -6,7 +6,11 @@ import right from '../../assets/images/right-arrow.svg';
 import { weekDays } from '../../utils/constants';
 import { months } from '../../utils/constants';
 
-const Calendar = () => {
+interface ICalendarProps {
+  onOpen: () => void;
+}
+
+const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
   const date = new Date();
   const [currentMonth, setCurrentMonth] = useState(date.getMonth());
   const [currentYear, setCurrentYear] = useState(date.getFullYear());
@@ -80,12 +84,20 @@ const Calendar = () => {
 
         <ul className="calendar__days">
           {getAllDaysInMonth().map((day, index) => (
-            <li className="calendar__day" key={index}>
+            <li
+              onClick={onOpen}
+              className="calendar__day calendar__day_event"
+              key={index}>
               {day}
             </li>
           ))}
         </ul>
       </div>
+
+      <p className="calendar__week-deals">
+        Желаете посмотреть планы на неделю?{' '}
+        <span className="calendar__see-more">Посмореть</span>
+      </p>
     </section>
   );
 };
