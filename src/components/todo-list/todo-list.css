@@ -17,6 +17,10 @@
   }
 }
 
+.modal__deal_strikethrough {
+  text-decoration: line-through;
+}
+
 .modal__checkbox-container {
   display: flex;
   align-items: center;
