@@ -5,37 +5,35 @@ import deleteIcon from '../../assets/images/delete.svg';
 import AddInput from '../add-input/add-input';
 
 const TodoList = () => {
-  const [todoList, setTodoList] = useState<string[]>(mockTodoList);
+  const [todoList, setTodoList] =
+    useState<{ id: number; todo: string; isDone: boolean }[]>(mockTodoList);
 
-  const handleDeleteDeal = (index: number) => {
-    const newList = [...todoList];
-    newList.splice(index, 1);
-    setTodoList(newList);
-  };
-
-  const handleToggleComplete = (index: number) => {
-    const newList = [...todoList];
-    newList[index] = newList[index] + ' - Завершено';
-    setTodoList(newList);
+  //создаем новую таску
+  const addNewTodo = (newTodo: {
+    id: number;
+    todo: string;
+    isDone: boolean;
+  }) => {
+    setTodoList([...todoList, newTodo]);
+    console.log(todoList);
   };
 
   return (
     <>
       <ul className="modal__todo">
-        {todoList.map((deal, i) => (
-          <li key={i} className="modal__deal">
-            <span>{`${i + 1}. ${deal}`}</span>
-
+        {todoList.map((item, i) => (
+          <li key={item.id} className="modal__deal">
+            {`${i + 1}. ${item.todo}`}
             <div className="modal__checkbox-container">
               <input
                 className="modal__checkbox"
                 type="checkbox"
-                id="checkboxid"
-                onChange={() => handleToggleComplete(i)}
+                id={`checkboxid-${i}`}
               />
-              <label className="modal__label" htmlFor="checkboxid"></label>
+              <label
+                className="modal__label"
+                htmlFor={`checkboxid-${i}`}></label>
               <img
-                onClick={() => handleDeleteDeal(i)}
                 alt="delete"
                 src={deleteIcon}
                 className="modal__delete-deal"
@@ -45,7 +43,7 @@ const TodoList = () => {
         ))}
       </ul>
 
-      <AddInput todoList={todoList} setTodoList={setTodoList} />
+      <AddInput addNewTodo={addNewTodo} />
     </>
   );
 };

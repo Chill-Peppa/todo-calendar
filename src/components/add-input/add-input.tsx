@@ -2,11 +2,10 @@ import React, { useState, ChangeEvent, FC } from 'react';
 import './add-input.css';
 
 interface AddInputProps {
-  todoList: string[];
-  setTodoList: React.Dispatch<React.SetStateAction<string[]>>;
+  addNewTodo: Function;
 }
 
-const AddInput: FC<AddInputProps> = ({ todoList, setTodoList }) => {
+const AddInput: FC<AddInputProps> = ({ addNewTodo }) => {
   const [text, setText] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
 
@@ -24,11 +23,17 @@ const AddInput: FC<AddInputProps> = ({ todoList, setTodoList }) => {
     }
   };
 
-  const addNewDeal = () => {
-    if (text) {
-      setTodoList([...todoList, text]);
+  const handleAddTodo = () => {
+    if (text !== '') {
+      addNewTodo({
+        id: Math.floor(Math.random() * 1000),
+        todo: text,
+        isDone: false,
+      });
+      setText('');
     }
   };
+
   return (
     <div className="modal__add-container">
       <input
@@ -43,7 +48,10 @@ const AddInput: FC<AddInputProps> = ({ todoList, setTodoList }) => {
         onBlur={handleBlur}
         placeholder="Добавьте новое событие"
       />
-      <button type="button" onClick={addNewDeal} className="modal__add-button">
+      <button
+        onClick={handleAddTodo}
+        type="button"
+        className="modal__add-button">
         +
       </button>
     </div>

@@ -24,7 +24,7 @@
 }
 
 .modal__label {
-  display: block;
+  position: relative;
   border: 2px solid #88a;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3) inset;
   border-radius: 10%;
@@ -34,7 +34,9 @@
 }
 
 .modal__checkbox {
-  display: none;
+  visibility: hidden;
+  position: absolute;
+  z-index: -2;
 }
 
 .modal__checkbox:checked + .modal__label {
