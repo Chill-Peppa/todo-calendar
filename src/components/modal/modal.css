@@ -5,22 +5,34 @@
   transform: translate(-50%, -50%);
   border: 1px solid rgba(76, 76, 255, 0.2);
   max-width: 720px;
-  max-height: 718px;
+  min-height: 400px;
   width: 100%;
   background-color: #fff;
   border-radius: 30px;
-  padding: 40px 40px 0 40px;
+  padding: 40px 40px 40px 40px;
   z-index: 50;
+}
+
+@media screen and (max-width: 500px) {
+  .modal {
+    max-width: 400px;
+  }
 }
 
 .modal__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid green;
 }
 
 .modal__title {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .modal__title {
+    font-size: 20px;
+  }
 }
 
 .modal__close {
@@ -34,4 +46,11 @@
 .modal__close-icon {
   width: 30px;
   height: 30px;
+}
+
+@media screen and (max-width: 475px) {
+  .modal__close-icon {
+    width: 23px;
+    height: 23px;
+  }
 }

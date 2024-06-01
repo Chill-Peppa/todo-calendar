@@ -72,10 +72,10 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 20px 37px;
+  gap: 20px 38px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 555px) {
   .calendar__days {
     gap: 20px 10px;
   }
@@ -94,5 +94,23 @@
 }
 
 .calendar__week-deals {
-  margin-top: 20px;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 475px) {
+  .calendar__week-deals {
+    font-size: 18px;
+  }
+}
+
+.calendar__see-more {
+  cursor: pointer;
+  color: #5d9b9b;
+  opacity: 1;
+}
+
+.calendar__see-more:hover {
+  opacity: 0.6;
+  transition: opacity 0.7s ease-in-out;
 }

@@ -1,0 +1,59 @@
+.modal__todo {
+  margin-top: 20px;
+}
+
+.modal__deal {
+  list-style: none;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 98%;
+}
+
+@media screen and (max-width: 500px) {
+  .modal__deal {
+    font-size: 19px;
+  }
+}
+
+.modal__delete-deal {
+  width: 25px;
+  height: 25px;
+}
+
+.modal__add-container {
+  margin-top: 20px;
+}
+
+.modal__add-container {
+  display: flex;
+  gap: 13px;
+}
+
+.modal__input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #5d9b9b;
+  text-align: left;
+  font-size: 18px;
+  outline: none;
+}
+
+.modal__input_focused {
+  border-bottom: 2px solid #5d9b9b;
+}
+
+.modal__add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 35px;
+  border: none;
+  background: #5d9b9b;
+  cursor: pointer;
+}
