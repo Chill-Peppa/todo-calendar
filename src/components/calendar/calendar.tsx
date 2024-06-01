@@ -20,20 +20,14 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch('https://isdayoff.ru/api/getdata?year=2024&month=05')
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
-
-  useEffect(() => {
     const fetchData = async () => {
       const days = await getAllDaysInMonth();
       setDaysInMonth(days);
-      console.log('days', days);
       setDataLoaded(true);
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentYear, currentMonth]);
 
   const returnDate = () => {
@@ -41,8 +35,28 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
   };
 
   const getAllDaysInMonth = async () => {
+    let firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
     const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const lastDateOfLastMonth = new Date(
+      currentYear,
+      currentMonth,
+      0,
+    ).getDate();
+
+    if (firstDayOfMonth === 0) {
+      firstDayOfMonth = 6; // Переназначаем воскресенье на 6 (вместо 0)
+    } else {
+      firstDayOfMonth--; // Коррекция нумерации остальных дней
+    }
+
     let allDaysInMonthArray: { day: number; isHoliday: number }[] = [];
+
+    for (let i = firstDayOfMonth; i > 0; i--) {
+      allDaysInMonthArray = [
+        ...allDaysInMonthArray,
+        { day: lastDateOfLastMonth - i + 1, isHoliday: 0 },
+      ];
+    }
 
     for (let i = 1; i <= lastDayOfMonth; i++) {
       try {
@@ -128,12 +142,12 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
         </ul>
 
         <ul className="calendar__days">
-          {daysInMonth.map((day, index) => (
+          {daysInMonth.map((item, index) => (
             <li
               onClick={onOpen}
-              className="calendar__day calendar__day_event"
+              className={`calendar__day calendar__day_event`}
               key={index}>
-              {day.day}
+              {item.day}
             </li>
           ))}
         </ul>
