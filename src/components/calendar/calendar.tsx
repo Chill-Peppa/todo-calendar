@@ -153,7 +153,7 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
           {daysInMonth.map((item, index) => (
             <li
               onClick={onOpen}
-              data-date={`${currentYear}-${currentMonth}-${item.day}`}
+              data-date={`${item.day}.${currentMonth}.${currentYear}`}
               className={`calendar__day calendar__day_event ${
                 item.isHoliday === 1 && 'calendar__day_holiday'
               } ${item.isHoliday === 2 && 'calendar__day_inactive'}`}

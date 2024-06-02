@@ -16,13 +16,24 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
     { id: number; todo: string; isDone: boolean; date: string }[]
   >([]);
 
-  //при монтировании получаю данные из стореджа
+  const [checkedItems, setCheckedItems] = useState<{ [key: number]: boolean }>(
+    {},
+  );
+
+  console.log('объект с состоянием чекбокса:', checkedItems);
+
   useEffect(() => {
     const savedTodoListString = localStorage.getItem('todoList');
     const savedTodoList = savedTodoListString
       ? JSON.parse(savedTodoListString)
       : [];
     setTodoList(savedTodoList);
+
+    const savedCheckedItemsString = localStorage.getItem('checkedItems');
+    const savedCheckedItems = savedCheckedItemsString
+      ? JSON.parse(savedCheckedItemsString)
+      : {};
+    setCheckedItems(savedCheckedItems);
   }, []);
 
   const addNewTodo = (newTodo: {
@@ -31,24 +42,28 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
     isDone: boolean;
     date: string;
   }) => {
-    const updateTodo = [...todoList, newTodo];
-    setTodoList(updateTodo);
-    localStorage.setItem('todoList', JSON.stringify(updateTodo));
-    console.log(updateTodo);
+    const updatedTodo = [...todoList, newTodo];
+    setTodoList(updatedTodo);
+    localStorage.setItem('todoList', JSON.stringify(updatedTodo));
+    console.log('Наш массив со всеми данными:', updatedTodo);
   };
 
   const deleteTodo = (id: number) => {
-    const updateTodo = todoList.filter((item) => item.id !== id);
-    setTodoList(updateTodo);
-    localStorage.setItem('todoList', JSON.stringify(updateTodo));
+    const updatedTodo = todoList.filter((item) => item.id !== id);
+    setTodoList(updatedTodo);
+    localStorage.setItem('todoList', JSON.stringify(updatedTodo));
   };
 
   const toggleTodo = (id: number) => {
-    const updateTodo = todoList.map((item) =>
+    const updatedTodo = todoList.map((item) =>
       item.id === id ? { ...item, isDone: !item.isDone } : item,
     );
-    setTodoList(updateTodo);
-    localStorage.setItem('todoList', JSON.stringify(updateTodo));
+    setTodoList(updatedTodo);
+    localStorage.setItem('todoList', JSON.stringify(updatedTodo));
+
+    const updatedCheckedItems = { ...checkedItems, [id]: !checkedItems[id] };
+    setCheckedItems(updatedCheckedItems);
+    localStorage.setItem('checkedItems', JSON.stringify(updatedCheckedItems));
   };
 
   // Функция для фильтрации задач по дате
@@ -57,7 +72,6 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
     setFilteredTodoList(filteredList);
   };
 
-  // Вызов функции фильтрации при изменении выбранной даты
   useEffect(() => {
     filterTodoList(selectedDate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,7 +93,8 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
               <input
                 className="modal__checkbox"
                 type="checkbox"
-                onClick={() => toggleTodo(item.id)}
+                checked={checkedItems[item.id]}
+                onChange={() => toggleTodo(item.id)}
                 id={`checkboxid-${item.id}`}
               />
 

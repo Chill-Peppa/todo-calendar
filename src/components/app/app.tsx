@@ -24,7 +24,7 @@ function App() {
     <div className="app">
       <Calendar onOpen={handleOpenModal} />
       {isOpenModal && (
-        <Modal onClose={handleCloseModal}>
+        <Modal selectedDate={selectedDate} onClose={handleCloseModal}>
           <TodoList selectedDate={selectedDate} />
         </Modal>
       )}
