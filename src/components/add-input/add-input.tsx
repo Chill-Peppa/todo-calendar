@@ -29,6 +29,7 @@ const AddInput: FC<AddInputProps> = ({ addNewTodo }) => {
         id: Math.floor(Math.random() * 1000), //для генерации случайного айди.
         todo: text,
         isDone: false,
+        date: ``,
       });
       setText('');
     }

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-//import { mockTodoList } from '../../utils/constants';
 import './todo-list.css';
 import deleteIcon from '../../assets/images/delete.svg';
 import AddInput from '../add-input/add-input';
 
 const TodoList = () => {
   const [todoList, setTodoList] = useState<
-    { id: number; todo: string; isDone: boolean }[]
+    { id: number; todo: string; isDone: boolean; date: string }[]
   >([]);
 
   //при монтировании получаю данные из стореджа
@@ -22,6 +21,7 @@ const TodoList = () => {
     id: number;
     todo: string;
     isDone: boolean;
+    date: string;
   }) => {
     const updateTodo = [...todoList, newTodo];
     setTodoList(updateTodo);
