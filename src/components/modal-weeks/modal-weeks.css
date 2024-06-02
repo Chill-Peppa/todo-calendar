@@ -1,0 +1,18 @@
+.modal-weeks {
+  border: 1px solid red;
+  margin-top: 25px;
+}
+
+.modal-week__inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-week__input-container {
+  display: flex;
+  gap: 15px;
+}
+
+.modal-weeks__todos {
+  margin-top: 30px;
+}

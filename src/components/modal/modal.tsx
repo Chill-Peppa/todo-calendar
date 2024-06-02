@@ -10,17 +10,15 @@ const modalRoot = document.getElementById('react-modals') as HTMLElement;
 interface IModalProps {
   children: ReactNode;
   onClose: () => void;
-  selectedDate: string;
+  title: string;
 }
 
-const Modal: React.FC<IModalProps> = ({ children, onClose, selectedDate }) => {
+const Modal: React.FC<IModalProps> = ({ children, onClose, title }) => {
   return ReactDOM.createPortal(
     <>
       <div className="modal">
         <div className="modal__header">
-          <h2 className="modal__title">
-            Запланированные события на {selectedDate}
-          </h2>
+          <h2 className="modal__title">{title}</h2>
           <button onClick={onClose} type="button" className="modal__close">
             <img
               src={close as unknown as string}

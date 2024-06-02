@@ -20,8 +20,6 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
     {},
   );
 
-  console.log('объект с состоянием чекбокса:', checkedItems);
-
   useEffect(() => {
     const savedTodoListString = localStorage.getItem('todoList');
     const savedTodoList = savedTodoListString
@@ -78,7 +76,7 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
   }, [selectedDate, todoList]);
 
   return (
-    <>
+    <div className="modal__todo-container">
       <ul className="modal__todo">
         {filteredTodoList.map((item, i) => (
           <li
@@ -114,7 +112,7 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
       </ul>
 
       <AddInput addNewTodo={addNewTodo} selectedDate={selectedDate} />
-    </>
+    </div>
   );
 };
 

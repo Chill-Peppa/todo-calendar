@@ -7,10 +7,14 @@ import { weekDays } from '../../utils/constants';
 import { months } from '../../utils/constants';
 
 interface ICalendarProps {
-  onOpen: (e: React.MouseEvent<HTMLLIElement>) => void;
+  onOpenTodo: (e: React.MouseEvent<HTMLLIElement>) => void;
+  onOpenWeekTasks: () => void;
 }
 
-const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
+const Calendar: React.FC<ICalendarProps> = ({
+  onOpenTodo,
+  onOpenWeekTasks,
+}) => {
   const date = new Date();
   const [currentMonth, setCurrentMonth] = useState(date.getMonth());
   const [currentYear, setCurrentYear] = useState(date.getFullYear());
@@ -18,7 +22,6 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
     { day: number; isHoliday: number }[]
   >([]);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
-  // const [selectedDate, setSelectedDate] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,7 +53,10 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
       firstDayOfMonth--; // Коррекция нумерации остальных дней
     }
 
-    let allDaysInMonthArray: { day: number; isHoliday: number }[] = [];
+    let allDaysInMonthArray: {
+      day: number;
+      isHoliday: number;
+    }[] = [];
 
     for (let i = firstDayOfMonth; i > 0; i--) {
       allDaysInMonthArray = [
@@ -107,13 +113,6 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
     setDataLoaded(false);
   };
 
-  // const getClickedDate = (e: React.MouseEvent<HTMLLIElement>) => {
-  //   const dataDate = e.currentTarget.getAttribute('data-date');
-  //   setSelectedDate(dataDate || '');
-  //   console.log(dataDate);
-  //   onOpen();
-  // };
-
   return (
     <section className="calendar">
       <div className="calendar__header">
@@ -152,11 +151,12 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
         <ul className="calendar__days">
           {daysInMonth.map((item, index) => (
             <li
-              onClick={onOpen}
+              onClick={onOpenTodo}
               data-date={`${item.day}.${currentMonth}.${currentYear}`}
-              className={`calendar__day calendar__day_event ${
-                item.isHoliday === 1 && 'calendar__day_holiday'
-              } ${item.isHoliday === 2 && 'calendar__day_inactive'}`}
+              className={`calendar__day calendar__day_event
+               ${item.isHoliday === 1 && 'calendar__day_holiday'} ${
+                item.isHoliday === 2 && 'calendar__day_inactive'
+              }`}
               key={index}>
               {item.day}
             </li>
@@ -166,7 +166,9 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
 
       <p className="calendar__week-deals">
         Желаете посмотреть планы на неделю?{' '}
-        <span className="calendar__see-more">Посмореть</span>
+        <span onClick={onOpenWeekTasks} className="calendar__see-more">
+          Посмореть
+        </span>
       </p>
     </section>
   );

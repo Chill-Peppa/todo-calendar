@@ -1,31 +1,48 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './app.css';
 
 import Calendar from '../calendar/calendar';
 import Modal from '../modal/modal';
 import TodoList from '../todo-list/todo-list';
+import ModalWeeks from '../modal-weeks/modal-weeks';
 
 function App() {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalTodo, setIsOpenModalTodo] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
+  const [isOpenModalWeeks, setIsOpenModalWeeks] = useState<boolean>(false);
 
   const handleCloseModal = () => {
-    setIsOpenModal(false);
+    setIsOpenModalTodo(false);
+    setIsOpenModalWeeks(false);
   };
 
-  const handleOpenModal = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handleOpenModalTodo = (e: React.MouseEvent<HTMLLIElement>) => {
     const dataDate = e.currentTarget.getAttribute('data-date');
     setSelectedDate(dataDate || '');
-    console.log(dataDate);
-    setIsOpenModal(true);
+    setIsOpenModalTodo(true);
+  };
+
+  const handleOpenModalWeeks = () => {
+    setIsOpenModalWeeks(true);
   };
 
   return (
     <div className="app">
-      <Calendar onOpen={handleOpenModal} />
-      {isOpenModal && (
-        <Modal selectedDate={selectedDate} onClose={handleCloseModal}>
+      <Calendar
+        onOpenWeekTasks={handleOpenModalWeeks}
+        onOpenTodo={handleOpenModalTodo}
+      />
+
+      {isOpenModalTodo && (
+        <Modal
+          title={`Запланированные события на ${selectedDate}`}
+          onClose={handleCloseModal}>
           <TodoList selectedDate={selectedDate} />
+        </Modal>
+      )}
+      {isOpenModalWeeks && (
+        <Modal title="Выберите неделю" onClose={handleCloseModal}>
+          <ModalWeeks />
         </Modal>
       )}
     </div>
