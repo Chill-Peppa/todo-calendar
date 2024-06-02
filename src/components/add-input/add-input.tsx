@@ -3,9 +3,10 @@ import './add-input.css';
 
 interface AddInputProps {
   addNewTodo: Function;
+  selectedDate: string;
 }
 
-const AddInput: FC<AddInputProps> = ({ addNewTodo }) => {
+const AddInput: FC<AddInputProps> = ({ addNewTodo, selectedDate }) => {
   const [text, setText] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
 
@@ -29,7 +30,7 @@ const AddInput: FC<AddInputProps> = ({ addNewTodo }) => {
         id: Math.floor(Math.random() * 1000), //для генерации случайного айди.
         todo: text,
         isDone: false,
-        date: ``,
+        date: selectedDate,
       });
       setText('');
     }

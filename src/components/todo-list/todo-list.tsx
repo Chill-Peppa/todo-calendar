@@ -1,10 +1,18 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './todo-list.css';
 import deleteIcon from '../../assets/images/delete.svg';
 import AddInput from '../add-input/add-input';
 
-const TodoList = () => {
+interface ITodoList {
+  selectedDate: string;
+}
+
+const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
   const [todoList, setTodoList] = useState<
+    { id: number; todo: string; isDone: boolean; date: string }[]
+  >([]);
+
+  const [filteredTodoList, setFilteredTodoList] = useState<
     { id: number; todo: string; isDone: boolean; date: string }[]
   >([]);
 
@@ -43,10 +51,22 @@ const TodoList = () => {
     localStorage.setItem('todoList', JSON.stringify(updateTodo));
   };
 
+  // Функция для фильтрации задач по дате
+  const filterTodoList = (date: string) => {
+    const filteredList = todoList.filter((item) => item.date === date);
+    setFilteredTodoList(filteredList);
+  };
+
+  // Вызов функции фильтрации при изменении выбранной даты
+  useEffect(() => {
+    filterTodoList(selectedDate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDate, todoList]);
+
   return (
     <>
       <ul className="modal__todo">
-        {todoList.map((item, i) => (
+        {filteredTodoList.map((item, i) => (
           <li
             key={item.id}
             className={
@@ -78,7 +98,7 @@ const TodoList = () => {
         ))}
       </ul>
 
-      <AddInput addNewTodo={addNewTodo} />
+      <AddInput addNewTodo={addNewTodo} selectedDate={selectedDate} />
     </>
   );
 };

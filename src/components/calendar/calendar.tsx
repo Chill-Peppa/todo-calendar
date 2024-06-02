@@ -7,7 +7,7 @@ import { weekDays } from '../../utils/constants';
 import { months } from '../../utils/constants';
 
 interface ICalendarProps {
-  onOpen: () => void;
+  onOpen: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
@@ -18,6 +18,7 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
     { day: number; isHoliday: number }[]
   >([]);
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
+  // const [selectedDate, setSelectedDate] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -106,6 +107,13 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
     setDataLoaded(false);
   };
 
+  // const getClickedDate = (e: React.MouseEvent<HTMLLIElement>) => {
+  //   const dataDate = e.currentTarget.getAttribute('data-date');
+  //   setSelectedDate(dataDate || '');
+  //   console.log(dataDate);
+  //   onOpen();
+  // };
+
   return (
     <section className="calendar">
       <div className="calendar__header">
@@ -145,6 +153,7 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
           {daysInMonth.map((item, index) => (
             <li
               onClick={onOpen}
+              data-date={`${currentYear}-${currentMonth}-${item.day}`}
               className={`calendar__day calendar__day_event ${
                 item.isHoliday === 1 && 'calendar__day_holiday'
               } ${item.isHoliday === 2 && 'calendar__day_inactive'}`}
