@@ -24,13 +24,13 @@ const Calendar: React.FC<ICalendarProps> = ({
   const [dataLoaded, setDataLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchHolidays = async () => {
       const days = await getAllDaysInMonth();
       setDaysInMonth(days);
       setDataLoaded(true);
     };
 
-    fetchData();
+    fetchHolidays();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentYear, currentMonth]);
 
@@ -113,6 +113,19 @@ const Calendar: React.FC<ICalendarProps> = ({
     setDataLoaded(false);
   };
 
+  const checkDate = (date: string) => {
+    const savedTodoListString = localStorage.getItem('todoList');
+    const savedTodoList = savedTodoListString
+      ? JSON.parse(savedTodoListString)
+      : [];
+    console.log(savedTodoList);
+
+    return savedTodoList.some(
+      (task: { id: number; todo: string; isDone: boolean; date: string }) =>
+        task.date === date,
+    );
+  };
+
   return (
     <section className="calendar">
       <div className="calendar__header">
@@ -153,7 +166,10 @@ const Calendar: React.FC<ICalendarProps> = ({
             <li
               onClick={onOpenTodo}
               data-date={`${item.day}.${currentMonth}.${currentYear}`}
-              className={`calendar__day calendar__day_event
+              className={`calendar__day ${
+                checkDate(`${item.day}.${currentMonth}.${currentYear}`) &&
+                'calendar__day_event'
+              }
                ${item.isHoliday === 1 && 'calendar__day_holiday'} ${
                 item.isHoliday === 2 && 'calendar__day_inactive'
               }`}
