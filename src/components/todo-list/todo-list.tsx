@@ -1,35 +1,46 @@
-import { useState } from 'react';
-import { mockTodoList } from '../../utils/constants';
+import { useState, useEffect } from 'react';
+//import { mockTodoList } from '../../utils/constants';
 import './todo-list.css';
 import deleteIcon from '../../assets/images/delete.svg';
 import AddInput from '../add-input/add-input';
 
 const TodoList = () => {
-  const [todoList, setTodoList] =
-    useState<{ id: number; todo: string; isDone: boolean }[]>(mockTodoList);
+  const [todoList, setTodoList] = useState<
+    { id: number; todo: string; isDone: boolean }[]
+  >([]);
 
-  //создаем новую таску
+  //при монтировании получаю данные из стореджа
+  useEffect(() => {
+    const savedTodoListString = localStorage.getItem('todoList');
+    const savedTodoList = savedTodoListString
+      ? JSON.parse(savedTodoListString)
+      : [];
+    setTodoList(savedTodoList);
+  }, []);
+
   const addNewTodo = (newTodo: {
     id: number;
     todo: string;
     isDone: boolean;
   }) => {
-    setTodoList([...todoList, newTodo]);
-    console.log(todoList);
+    const updateTodo = [...todoList, newTodo];
+    setTodoList(updateTodo);
+    localStorage.setItem('todoList', JSON.stringify(updateTodo));
+    console.log(updateTodo);
   };
 
-  //удаляем таску
   const deleteTodo = (id: number) => {
-    setTodoList(todoList.filter((item) => item.id !== id));
+    const updateTodo = todoList.filter((item) => item.id !== id);
+    setTodoList(updateTodo);
+    localStorage.setItem('todoList', JSON.stringify(updateTodo));
   };
 
-  //чтобы перечеркнуть таску или наоборот
   const toggleTodo = (id: number) => {
-    setTodoList(
-      todoList.map((item) =>
-        item.id === id ? { ...item, isDone: !item.isDone } : item,
-      ),
+    const updateTodo = todoList.map((item) =>
+      item.id === id ? { ...item, isDone: !item.isDone } : item,
     );
+    setTodoList(updateTodo);
+    localStorage.setItem('todoList', JSON.stringify(updateTodo));
   };
 
   return (
