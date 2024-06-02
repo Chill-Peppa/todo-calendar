@@ -54,7 +54,7 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
     for (let i = firstDayOfMonth; i > 0; i--) {
       allDaysInMonthArray = [
         ...allDaysInMonthArray,
-        { day: lastDateOfLastMonth - i + 1, isHoliday: 0 },
+        { day: lastDateOfLastMonth - i + 1, isHoliday: 2 },
       ];
     }
 
@@ -145,7 +145,9 @@ const Calendar: React.FC<ICalendarProps> = ({ onOpen }) => {
           {daysInMonth.map((item, index) => (
             <li
               onClick={onOpen}
-              className={`calendar__day calendar__day_event`}
+              className={`calendar__day calendar__day_event ${
+                item.isHoliday === 1 && 'calendar__day_holiday'
+              } ${item.isHoliday === 2 && 'calendar__day_inactive'}`}
               key={index}>
               {item.day}
             </li>

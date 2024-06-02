@@ -93,6 +93,10 @@
   border-bottom: 3px solid #a6bdd7;
 }
 
+.calendar__day_holiday {
+  color: red;
+}
+
 .calendar__day_inactive {
   color: #aaa;
 }
