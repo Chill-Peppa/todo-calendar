@@ -22,8 +22,14 @@ export const StoreProvider: FC<IStoreProvider> = ({ children }) => {
   const getWeekNumber = (dateString: string): number => {
     const date = new Date(dateString);
     const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-    const pastDaysOfYear = (Number(date) - Number(firstDayOfYear)) / 86400000; //86400000 миллисекунд равны одному дню
-    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+
+    const pastDaysOfYear = (Number(date) - Number(firstDayOfYear)) / 86400000; // 86400000 миллисекунд равны одному дню
+    let weekStart = firstDayOfYear.getDay();
+    if (weekStart === 1) {
+      weekStart = 7;
+    }
+
+    return Math.ceil((pastDaysOfYear + weekStart) / 7);
   };
 
   const deleteTodo = (id: number) => {

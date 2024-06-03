@@ -27,6 +27,7 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
       ? JSON.parse(savedCheckedItemsString)
       : {};
     store.setCheckedItems(savedCheckedItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addNewTodo = (newTodo: {
