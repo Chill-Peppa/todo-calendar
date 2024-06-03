@@ -27,7 +27,7 @@ const AddInput: FC<AddInputProps> = ({ addNewTodo, selectedDate }) => {
   const handleAddTodo = () => {
     if (text !== '') {
       addNewTodo({
-        id: Math.floor(Math.random() * 1000), //для генерации случайного айди (можно было использовать uuid)
+        id: Math.floor(Math.random() * 1000), //для генерации случайного айди (можно uuid использовать)
         todo: text,
         isDone: false,
         date: selectedDate,

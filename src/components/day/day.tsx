@@ -18,19 +18,15 @@ const Day: FC<IDay> = ({
   currentYear,
   checkDate,
 }) => {
+  const dataDate = `${currentYear}-${(currentMonth + 1)
+    .toString()
+    .padStart(2, '0')}-${item.day.toString().padStart(2, '0')}`;
+
   return (
     <li
       onClick={onOpenTodo}
-      data-date={`${String(item.day).padStart(2, '0')}.${String(
-        currentMonth + 1,
-      ).padStart(2, '0')}.${currentYear}`}
-      className={`calendar__day ${
-        checkDate(
-          `${String(item.day).padStart(2, '0')}.${String(
-            currentMonth + 1,
-          ).padStart(2, '0')}.${currentYear}`,
-        ) && 'calendar__day_event'
-      }
+      data-date={dataDate}
+      className={`calendar__day ${checkDate(dataDate) && 'calendar__day_event'}
                ${item.isHoliday === 1 && 'calendar__day_holiday'} ${
         item.isHoliday === 2 && 'calendar__day_inactive'
       }`}

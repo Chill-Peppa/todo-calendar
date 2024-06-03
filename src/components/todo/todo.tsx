@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import deleteIcon from '../../assets/icons/delete.svg';
+import { useStore } from '../../hooks/useStore';
 
 interface ITodo {
   task: { id: number; todo: string; isDone: boolean; date: string };
   i: number;
-  checkedItems: { [key: number]: boolean };
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
 }
 
-const Todo: FC<ITodo> = ({ task, i, checkedItems, toggleTodo, deleteTodo }) => {
+const Todo: FC<ITodo> = ({ task, i }) => {
+  const store = useStore();
+
   return (
     <li
       key={task.id}
@@ -21,8 +21,8 @@ const Todo: FC<ITodo> = ({ task, i, checkedItems, toggleTodo, deleteTodo }) => {
         <input
           className="modal__checkbox"
           type="checkbox"
-          checked={checkedItems[task.id]}
-          onChange={() => toggleTodo(task.id)}
+          checked={store.checkedItems[task.id]}
+          onChange={() => store.toggleTodo(task.id)}
           id={`checkboxid-${task.id}`}
         />
 
@@ -34,7 +34,7 @@ const Todo: FC<ITodo> = ({ task, i, checkedItems, toggleTodo, deleteTodo }) => {
           alt="delete"
           src={deleteIcon}
           className="modal__delete-deal"
-          onClick={() => deleteTodo(task.id)}
+          onClick={() => store.deleteTodo(task.id)}
         />
       </div>
     </li>
