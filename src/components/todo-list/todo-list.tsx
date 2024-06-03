@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './todo-list.css';
-import deleteIcon from '../../assets/images/delete.svg';
 import AddInput from '../add-input/add-input';
+import Todo from '../todo/todo';
+//import { useStore } from '../../hooks/useStore';
 
 interface ITodoList {
   selectedDate: string;
 }
 
 const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
+  // const store = useStore();
+
   const [todoList, setTodoList] = useState<
     { id: number; todo: string; isDone: boolean; date: string }[]
   >([]);
@@ -43,7 +46,6 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
     const updatedTodo = [...todoList, newTodo];
     setTodoList(updatedTodo);
     localStorage.setItem('todoList', JSON.stringify(updatedTodo));
-    console.log('Наш массив со всеми данными:', updatedTodo);
   };
 
   const deleteTodo = (id: number) => {
@@ -78,36 +80,14 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
   return (
     <div className="modal__todo-container">
       <ul className="modal__todo">
-        {filteredTodoList.map((item, i) => (
-          <li
-            key={item.id}
-            className={
-              item.isDone
-                ? 'modal__deal modal__deal_strikethrough'
-                : 'modal__deal'
-            }>
-            {`${i + 1}. ${item.todo}`}
-            <div className="modal__checkbox-container">
-              <input
-                className="modal__checkbox"
-                type="checkbox"
-                checked={checkedItems[item.id]}
-                onChange={() => toggleTodo(item.id)}
-                id={`checkboxid-${item.id}`}
-              />
-
-              <label
-                className="modal__label"
-                htmlFor={`checkboxid-${item.id}`}></label>
-
-              <img
-                alt="delete"
-                src={deleteIcon}
-                className="modal__delete-deal"
-                onClick={() => deleteTodo(item.id)}
-              />
-            </div>
-          </li>
+        {filteredTodoList.map((task, i) => (
+          <Todo
+            task={task}
+            i={i}
+            checkedItems={checkedItems}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+          />
         ))}
       </ul>
 

@@ -5,6 +5,7 @@ import Calendar from '../calendar/calendar';
 import Modal from '../modal/modal';
 import TodoList from '../todo-list/todo-list';
 import ModalWeeks from '../modal-weeks/modal-weeks';
+import { StoreProvider } from '../../providers/StoreProvider';
 
 function App() {
   const [isOpenModalTodo, setIsOpenModalTodo] = useState<boolean>(false);
@@ -27,25 +28,27 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <Calendar
-        onOpenWeekTasks={handleOpenModalWeeks}
-        onOpenTodo={handleOpenModalTodo}
-      />
+    <StoreProvider>
+      <div className="app">
+        <Calendar
+          onOpenWeekTasks={handleOpenModalWeeks}
+          onOpenTodo={handleOpenModalTodo}
+        />
 
-      {isOpenModalTodo && (
-        <Modal
-          title={`Запланированные события на ${selectedDate}`}
-          onClose={handleCloseModal}>
-          <TodoList selectedDate={selectedDate} />
-        </Modal>
-      )}
-      {isOpenModalWeeks && (
-        <Modal title="Выберите неделю" onClose={handleCloseModal}>
-          <ModalWeeks />
-        </Modal>
-      )}
-    </div>
+        {isOpenModalTodo && (
+          <Modal
+            title={`Запланированные события на ${selectedDate}`}
+            onClose={handleCloseModal}>
+            <TodoList selectedDate={selectedDate} />
+          </Modal>
+        )}
+        {isOpenModalWeeks && (
+          <Modal title="Выберите неделю" onClose={handleCloseModal}>
+            <ModalWeeks />
+          </Modal>
+        )}
+      </div>
+    </StoreProvider>
   );
 }
 

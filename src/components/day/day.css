@@ -1,0 +1,18 @@
+.calendar__day {
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.calendar__day_event {
+  border-bottom: 3px solid #a6bdd7;
+}
+
+.calendar__day_holiday {
+  color: red;
+}
+
+.calendar__day_inactive {
+  color: #aaa;
+}

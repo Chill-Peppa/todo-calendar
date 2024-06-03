@@ -5,6 +5,7 @@ import right from '../../assets/images/right-arrow.svg';
 
 import { weekDays } from '../../utils/constants';
 import { months } from '../../utils/constants';
+import Day from '../day/day';
 
 interface ICalendarProps {
   onOpenTodo: (e: React.MouseEvent<HTMLLIElement>) => void;
@@ -118,7 +119,6 @@ const Calendar: React.FC<ICalendarProps> = ({
     const savedTodoList = savedTodoListString
       ? JSON.parse(savedTodoListString)
       : [];
-    console.log(savedTodoList);
 
     return savedTodoList.some(
       (task: { id: number; todo: string; isDone: boolean; date: string }) =>
@@ -163,19 +163,14 @@ const Calendar: React.FC<ICalendarProps> = ({
 
         <ul className="calendar__days">
           {daysInMonth.map((item, index) => (
-            <li
-              onClick={onOpenTodo}
-              data-date={`${item.day}.${currentMonth}.${currentYear}`}
-              className={`calendar__day ${
-                checkDate(`${item.day}.${currentMonth}.${currentYear}`) &&
-                'calendar__day_event'
-              }
-               ${item.isHoliday === 1 && 'calendar__day_holiday'} ${
-                item.isHoliday === 2 && 'calendar__day_inactive'
-              }`}
-              key={index}>
-              {item.day}
-            </li>
+            <Day
+              item={item}
+              index={index}
+              onOpenTodo={onOpenTodo}
+              currentMonth={currentMonth}
+              currentYear={currentYear}
+              checkDate={checkDate}
+            />
           ))}
         </ul>
       </div>
