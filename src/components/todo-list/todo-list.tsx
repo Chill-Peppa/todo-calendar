@@ -83,6 +83,7 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
         {filteredTodoList.map((task, i) => (
           <Todo
             task={task}
+            key={task.id}
             i={i}
             checkedItems={checkedItems}
             toggleTodo={toggleTodo}

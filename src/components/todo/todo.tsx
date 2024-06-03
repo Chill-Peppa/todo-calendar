@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import deleteIcon from '../../assets/images/delete.svg';
+import deleteIcon from '../../assets/icons/delete.svg';
 
 interface ITodo {
   task: { id: number; todo: string; isDone: boolean; date: string };

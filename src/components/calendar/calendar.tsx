@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './calendar.css';
-import left from '../../assets/images/left-arrow.svg';
-import right from '../../assets/images/right-arrow.svg';
+import left from '../../assets/icons/left-arrow.svg';
+import right from '../../assets/icons/right-arrow.svg';
 
 import { weekDays } from '../../utils/constants';
 import { months } from '../../utils/constants';
@@ -165,6 +165,7 @@ const Calendar: React.FC<ICalendarProps> = ({
           {daysInMonth.map((item, index) => (
             <Day
               item={item}
+              key={index}
               index={index}
               onOpenTodo={onOpenTodo}
               currentMonth={currentMonth}

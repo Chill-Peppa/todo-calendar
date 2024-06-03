@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import './modal.css';
-import close from '../../assets/images/close.svg';
+import close from '../../assets/icons/close.svg';
 
 import ModalOverlay from '../modal-overlay/modal-overlay';
 

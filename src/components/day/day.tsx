@@ -21,10 +21,15 @@ const Day: FC<IDay> = ({
   return (
     <li
       onClick={onOpenTodo}
-      data-date={`${item.day}.${currentMonth}.${currentYear}`}
+      data-date={`${String(item.day).padStart(2, '0')}.${String(
+        currentMonth + 1,
+      ).padStart(2, '0')}.${currentYear}`}
       className={`calendar__day ${
-        checkDate(`${item.day}.${currentMonth}.${currentYear}`) &&
-        'calendar__day_event'
+        checkDate(
+          `${String(item.day).padStart(2, '0')}.${String(
+            currentMonth + 1,
+          ).padStart(2, '0')}.${currentYear}`,
+        ) && 'calendar__day_event'
       }
                ${item.isHoliday === 1 && 'calendar__day_holiday'} ${
         item.isHoliday === 2 && 'calendar__day_inactive'

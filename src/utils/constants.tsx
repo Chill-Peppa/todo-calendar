@@ -26,3 +26,5 @@ export const mockTodoList = [
   { id: 7, todo: 'Погулять с собакой', isDone: false },
   { id: 8, todo: 'Составить список дел на завтра', isDone: false },
 ];
+
+export const BASE_URL = `https://isdayoff.ru/api/getdata?`;
