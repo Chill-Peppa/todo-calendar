@@ -31,22 +31,18 @@ const ModalWeeks: FC = () => {
     setFilteredTodoByWeek(filteredTodoByWeekArray);
   };
 
-  console.log(filteredTodoByWeek);
-
   useEffect(() => {
-    let weekNumber = store.getWeekNumber(startDate);
-    console.log(weekNumber);
     filterTodoByWeek();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [store.getWeekNumber, startDate]);
-
-  console.log(store.todoList);
 
   return (
     <div className="modal-weeks">
       <div className="modal-week__inputs">
         <div className="modal-week__input-container">
-          <label htmlFor="start">Начало:</label>
+          <label htmlFor="start">
+            При выборе любого дня отобразится todo на эту неделю
+          </label>
           <input
             type="date"
             id="start"
