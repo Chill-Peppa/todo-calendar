@@ -6,12 +6,18 @@
 }
 
 .modal__todo {
-  margin-top: 20px;
+  margin-top: 40px;
+}
+
+.modal__add-todo {
+  margin-top: 100px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .modal__deal {
   list-style: none;
-  font-size: 25px;
+  font-size: 21px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -2,6 +2,11 @@
   margin-top: 25px;
 }
 
+.modal-weeks__without-tasks {
+  margin-top: 50px;
+  font-size: 20px;
+}
+
 .modal-week__inputs {
   display: flex;
   justify-content: space-between;

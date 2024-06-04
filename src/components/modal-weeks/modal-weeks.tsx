@@ -41,7 +41,7 @@ const ModalWeeks: FC = () => {
       <div className="modal-week__inputs">
         <div className="modal-week__input-container">
           <label htmlFor="start">
-            При выборе любого дня отобразится todo на эту неделю
+            При выборе любого дня отобразится список задач на эту неделю
           </label>
           <input
             type="date"
@@ -52,11 +52,16 @@ const ModalWeeks: FC = () => {
           />
         </div>
       </div>
-      <ul className="modal-weeks__todos">
-        {filteredTodoByWeek.map((task, i) => (
-          <Todo task={task} i={i} key={task.id} />
-        ))}
-      </ul>
+
+      {filteredTodoByWeek.length ? (
+        <ul className="modal-weeks__todos">
+          {filteredTodoByWeek.map((task, i) => (
+            <Todo task={task} i={i} key={task.id} />
+          ))}
+        </ul>
+      ) : (
+        <p className="modal-weeks__without-tasks">На этой неделе планов нет.</p>
+      )}
     </div>
   );
 };

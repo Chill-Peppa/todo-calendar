@@ -14,8 +14,6 @@ interface IApi<T> {
   readonly _headers: T;
 }
 
-// Ключевое слово implements в TypeScript используется
-// для указания того, что класс реализует определенный интерфейс.
 export default class Api implements IApi<THeaders> {
   readonly _url: string;
   readonly _headers: THeaders;
@@ -25,7 +23,6 @@ export default class Api implements IApi<THeaders> {
     this._headers = headers;
   }
 
-  //внутренний метод проверки ответа
   _returnResponse(res: Response) {
     if (res.ok) {
       return res.text();
@@ -34,12 +31,10 @@ export default class Api implements IApi<THeaders> {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  //универсальный метод запроса с проверкой ответа
   _request(url: string, options: RequestInit) {
     return fetch(url, options).then(this._returnResponse);
   }
 
-  //GET запрос с информацией о выходных
   getHolidays(currentYear: number, currentMonth: number) {
     return this._request(
       `${this._url}year=${currentYear}&month=${currentMonth + 1}`,
@@ -50,7 +45,6 @@ export default class Api implements IApi<THeaders> {
   }
 }
 
-//тут экземпляр класса
 export const holidayApi = new Api({
   url: BASE_URL,
   headers: {

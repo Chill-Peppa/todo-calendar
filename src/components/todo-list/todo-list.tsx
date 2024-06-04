@@ -50,7 +50,6 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
     console.log(store.todoList);
   };
 
-  // Функция для фильтрации задач по дате
   const filterTodoList = (date: string) => {
     const filteredList = store.todoList.filter((item) => item.date === date);
     setFilteredTodoList(filteredList);
@@ -63,11 +62,17 @@ const TodoList: React.FC<ITodoList> = ({ selectedDate }) => {
 
   return (
     <div className="modal__todo-container">
-      <ul className="modal__todo">
-        {filteredTodoList.map((task, i) => (
-          <Todo task={task} key={task.id} i={i} />
-        ))}
-      </ul>
+      {filteredTodoList.length ? (
+        <ul className="modal__todo">
+          {filteredTodoList.map((task, i) => (
+            <Todo task={task} key={task.id} i={i} />
+          ))}
+        </ul>
+      ) : (
+        <span className="modal__add-todo">
+          На этот день событий не запланировано. Добавьте ваше первое событие 🥺
+        </span>
+      )}
 
       <AddInput addNewTodo={addNewTodo} selectedDate={selectedDate} />
     </div>

@@ -71,7 +71,6 @@ const Calendar: React.FC<ICalendarProps> = ({
       ];
     }
     setDaysInMonth(allDaysInMonthArray);
-    console.log('all days array:', allDaysInMonthArray);
   };
 
   const onNextButtonClick = () => {

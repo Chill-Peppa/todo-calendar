@@ -22,6 +22,15 @@ const Day: FC<IDay> = ({
     .toString()
     .padStart(2, '0')}-${item.day.toString().padStart(2, '0')}`;
 
+  const isCurrentDay = (year: number, month: number, day: number) => {
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+
+    return year === currentYear && month === currentMonth && day === currentDay;
+  };
+
   return (
     <li
       onClick={onOpenTodo}
@@ -29,6 +38,9 @@ const Day: FC<IDay> = ({
       className={`calendar__day ${checkDate(dataDate) && 'calendar__day_event'}
                ${item.isHoliday === 1 && 'calendar__day_holiday'} ${
         item.isHoliday === 2 && 'calendar__day_inactive'
+      } ${
+        isCurrentDay(currentYear, currentMonth, item.day) &&
+        'calendar__day_current'
       }`}
       key={index}>
       {item.day}

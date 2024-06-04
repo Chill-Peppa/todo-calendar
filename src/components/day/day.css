@@ -16,3 +16,7 @@
 .calendar__day_inactive {
   color: #aaa;
 }
+
+.calendar__day_current {
+  background-color: #dcdcdc;
+}
