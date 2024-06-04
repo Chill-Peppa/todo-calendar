@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    image: todo-calendar
+    container_name: todo-calendar
+    restart: always
+    stdin_open: true
+    volumes:
+      - './app:/home/app'
+    ports:
+      - 3000:3000
