@@ -6,6 +6,7 @@ import right from '../../assets/icons/right-arrow.svg';
 import { weekDays } from '../../utils/constants';
 import { months } from '../../utils/constants';
 import Day from '../day/day';
+import { holidayApi } from '../../utils/api';
 
 interface ICalendarProps {
   onOpenTodo: (e: React.MouseEvent<HTMLLIElement>) => void;
@@ -22,24 +23,21 @@ const Calendar: React.FC<ICalendarProps> = ({
   const [daysInMonth, setDaysInMonth] = useState<
     { day: number; isHoliday: number }[]
   >([]);
-  const [dataLoaded, setDataLoaded] = useState<boolean>(false);
+  const [responseString, setResponseString] = useState<string>('');
 
   useEffect(() => {
-    const fetchHolidays = async () => {
-      const days = await getAllDaysInMonth();
-      setDaysInMonth(days);
-      setDataLoaded(true);
-    };
-
-    fetchHolidays();
+    holidayApi.getHolidays(currentYear, currentMonth).then((res) => {
+      setResponseString(res);
+    });
+    getAllDaysInMonth();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentYear, currentMonth]);
+  }, [currentYear, currentMonth, responseString]);
 
   const returnDate = () => {
     return `${months[currentMonth]} ${currentYear}`;
   };
 
-  const getAllDaysInMonth = async () => {
+  const getAllDaysInMonth = () => {
     let firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
     const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     const lastDateOfLastMonth = new Date(
@@ -67,27 +65,13 @@ const Calendar: React.FC<ICalendarProps> = ({
     }
 
     for (let i = 1; i <= lastDayOfMonth; i++) {
-      try {
-        const response = await fetch(
-          `https://isdayoff.ru/api/getdata?year=${currentYear}&month=${
-            currentMonth + 1
-          }&day=${i}`,
-        );
-        if (response.ok) {
-          const isHoliday = await response.json();
-          allDaysInMonthArray = [
-            ...allDaysInMonthArray,
-            { day: i, isHoliday: isHoliday },
-          ];
-        } else {
-          throw new Error('Fetch error');
-        }
-      } catch (error) {
-        console.error('Error fetch:', error);
-      }
+      allDaysInMonthArray = [
+        ...allDaysInMonthArray,
+        { day: i, isHoliday: Number(responseString[i - 1]) },
+      ];
     }
-
-    return allDaysInMonthArray;
+    setDaysInMonth(allDaysInMonthArray);
+    console.log('all days array:', allDaysInMonthArray);
   };
 
   const onNextButtonClick = () => {
@@ -99,7 +83,6 @@ const Calendar: React.FC<ICalendarProps> = ({
 
     setCurrentMonth(newMonth);
     setCurrentYear(newYear);
-    setDataLoaded(false);
   };
 
   const onPrevButtonClick = () => {
@@ -111,7 +94,6 @@ const Calendar: React.FC<ICalendarProps> = ({
 
     setCurrentMonth(newMonth);
     setCurrentYear(newYear);
-    setDataLoaded(false);
   };
 
   const checkDate = (date: string) => {
@@ -129,11 +111,8 @@ const Calendar: React.FC<ICalendarProps> = ({
   return (
     <section className="calendar">
       <div className="calendar__header">
-        {dataLoaded ? (
-          <h1 className="calendar__title">{returnDate()}</h1>
-        ) : (
-          <span>загрузка</span>
-        )}
+        <h1 className="calendar__title">{returnDate()}</h1>
+
         <div className="calendar__button-container">
           <button onClick={onPrevButtonClick} className="calendar__button">
             <img

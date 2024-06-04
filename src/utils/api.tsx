@@ -28,7 +28,7 @@ export default class Api implements IApi<THeaders> {
   //внутренний метод проверки ответа
   _returnResponse(res: Response) {
     if (res.ok) {
-      return res.json();
+      return res.text();
     }
 
     return Promise.reject(`Ошибка: ${res.status}`);
@@ -39,10 +39,10 @@ export default class Api implements IApi<THeaders> {
     return fetch(url, options).then(this._returnResponse);
   }
 
-  //GET запрос с информацией о ингредиентах
-  getHolidays(currentYear: number, currentMonth: number, i: number) {
+  //GET запрос с информацией о выходных
+  getHolidays(currentYear: number, currentMonth: number) {
     return this._request(
-      `${this._url}year=${currentYear}&month=${currentMonth + 1}&day=${i}`,
+      `${this._url}year=${currentYear}&month=${currentMonth + 1}`,
       {
         headers: this._headers,
       },
