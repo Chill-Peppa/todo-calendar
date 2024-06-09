@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render App 1`] = `
+<div
+  className="app"
+>
+  <section
+    className="calendar"
+  >
+    <div
+      className="calendar__header"
+    >
+      <h1
+        className="calendar__title"
+      >
+        Июнь 2024
+      </h1>
+      <div
+        className="calendar__button-container"
+      >
+        <button
+          className="calendar__button"
+          onClick={[Function]}
+        >
+          <img
+            alt="left arrow"
+            className="calendar__prev"
+            src="left-arrow.svg"
+          />
+        </button>
+        <button
+          className="calendar__button"
+          onClick={[Function]}
+        >
+          <img
+            alt="right arrow"
+            className="calendar__next"
+            src="right-arrow.svg"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      className="calendar__main"
+    >
+      <ul
+        className="calendar__weekdays"
+      >
+        <li
+          className="calendar__weekday"
+        >
+          Пн
+        </li>
+        <li
+          className="calendar__weekday"
+        >
+          Вт
+        </li>
+        <li
+          className="calendar__weekday"
+        >
+          Ср
+        </li>
+        <li
+          className="calendar__weekday"
+        >
+          Чт
+        </li>
+        <li
+          className="calendar__weekday"
+        >
+          Пт
+        </li>
+        <li
+          className="calendar__weekday"
+        >
+          Сб
+        </li>
+        <li
+          className="calendar__weekday"
+        >
+          Вс
+        </li>
+      </ul>
+      <ul
+        className="calendar__days"
+      />
+    </div>
+    <p
+      className="calendar__week-deals"
+    >
+      Желаете посмотреть планы на неделю?
+       
+      <span
+        className="calendar__see-more"
+        onClick={[Function]}
+      >
+        Посмореть
+      </span>
+    </p>
+  </section>
+</div>
+`;

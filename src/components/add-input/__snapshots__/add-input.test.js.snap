@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render AddInput 1`] = `
+<div
+  className="modal__add-container"
+>
+  <input
+    className="modal__input"
+    id="add-input"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Добавьте новое событие"
+    type="text"
+    value=""
+  />
+  <button
+    className="modal__add-button"
+    onClick={[Function]}
+    type="button"
+  >
+    +
+  </button>
+</div>
+`;

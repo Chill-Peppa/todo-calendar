@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render ModalOverlay 1`] = `
+<div
+  className="modal-weeks"
+>
+  <div
+    className="modal-week__inputs"
+  >
+    <div
+      className="modal-week__input-container"
+    >
+      <label
+        htmlFor="start"
+      >
+        При выборе любого дня отобразится список задач на эту неделю
+      </label>
+      <input
+        id="start"
+        name="trip-start"
+        onChange={[Function]}
+        type="date"
+        value=""
+      />
+    </div>
+  </div>
+  <p
+    className="modal-weeks__without-tasks"
+  >
+    На этой неделе планов нет.
+  </p>
+</div>
+`;

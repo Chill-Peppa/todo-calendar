@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render Modal 1`] = `
+Array [
+  <div
+    className="modal"
+  >
+    <div
+      className="modal__header"
+    >
+      <h2
+        className="modal__title"
+      >
+        test title
+      </h2>
+      <button
+        className="modal__close"
+        onClick={[MockFunction]}
+        type="button"
+      >
+        <img
+          alt="close icon"
+          className="modal__close-icon"
+          src="close.svg"
+        />
+      </button>
+    </div>
+    <div>
+      Child Component
+    </div>
+  </div>,
+  <div
+    className="modal__background"
+    onClick={[Function]}
+  />,
+]
+`;

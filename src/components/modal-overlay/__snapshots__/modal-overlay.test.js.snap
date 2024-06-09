@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render App 1`] = `
+<div
+  className="modal__background"
+  onClick={[Function]}
+/>
+`;
+
+exports[`should correctly render ModalOverlay 1`] = `
+<div
+  className="modal__background"
+  onClick={[Function]}
+/>
+`;
