@@ -12,6 +12,7 @@ exports[`should correctly render App 1`] = `
     >
       <h1
         className="calendar__title"
+        data-testid="calendar-title"
       >
         Июнь 2024
       </h1>
@@ -25,6 +26,7 @@ exports[`should correctly render App 1`] = `
           <img
             alt="left arrow"
             className="calendar__prev"
+            data-testid="prev-button"
             src="left-arrow.svg"
           />
         </button>
@@ -35,6 +37,7 @@ exports[`should correctly render App 1`] = `
           <img
             alt="right arrow"
             className="calendar__next"
+            data-testid="next-button"
             src="right-arrow.svg"
           />
         </button>
@@ -93,6 +96,7 @@ exports[`should correctly render App 1`] = `
        
       <span
         className="calendar__see-more"
+        data-testid="open-button"
         onClick={[Function]}
       >
         Посмореть

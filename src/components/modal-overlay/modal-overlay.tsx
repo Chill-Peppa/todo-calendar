@@ -12,7 +12,12 @@ const ModalOverlay: React.FC<IModalOverlayProps> = ({ onCloseOverlay }) => {
     }
   };
 
-  return <div onClick={closeByOverlay} className="modal__background"></div>;
+  return (
+    <div
+      data-testid="modal-background"
+      onClick={closeByOverlay}
+      className="modal__background"></div>
+  );
 };
 
 export default ModalOverlay;

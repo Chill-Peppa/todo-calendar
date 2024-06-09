@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render TodoList 1`] = `
+<div
+  className="modal__todo-container"
+>
+  <span
+    className="modal__add-todo"
+  >
+    На этот день событий не запланировано. Добавьте ваше первое событие 🥺
+  </span>
+  <div
+    className="modal__add-container"
+  >
+    <input
+      className="modal__input"
+      data-testid="text"
+      id="add-input"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Добавьте новое событие"
+      type="text"
+      value=""
+    />
+    <button
+      className="modal__add-button"
+      data-testid="add-button"
+      onClick={[Function]}
+      type="button"
+    >
+      +
+    </button>
+  </div>
+</div>
+`;

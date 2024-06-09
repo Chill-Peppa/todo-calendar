@@ -13,6 +13,18 @@ interface ICalendarProps {
   onOpenWeekTasks: () => void;
 }
 
+export const checkDate = (date: string) => {
+  const savedTodoListString = localStorage.getItem('todoList');
+  const savedTodoList = savedTodoListString
+    ? JSON.parse(savedTodoListString)
+    : [];
+
+  return savedTodoList.some(
+    (task: { id: number; todo: string; isDone: boolean; date: string }) =>
+      task.date === date,
+  );
+};
+
 const Calendar: React.FC<ICalendarProps> = ({
   onOpenTodo,
   onOpenWeekTasks,
@@ -95,22 +107,12 @@ const Calendar: React.FC<ICalendarProps> = ({
     setCurrentYear(newYear);
   };
 
-  const checkDate = (date: string) => {
-    const savedTodoListString = localStorage.getItem('todoList');
-    const savedTodoList = savedTodoListString
-      ? JSON.parse(savedTodoListString)
-      : [];
-
-    return savedTodoList.some(
-      (task: { id: number; todo: string; isDone: boolean; date: string }) =>
-        task.date === date,
-    );
-  };
-
   return (
     <section className="calendar">
       <div className="calendar__header">
-        <h1 className="calendar__title">{returnDate()}</h1>
+        <h1 data-testid="calendar-title" className="calendar__title">
+          {returnDate()}
+        </h1>
 
         <div className="calendar__button-container">
           <button onClick={onPrevButtonClick} className="calendar__button">
@@ -118,6 +120,7 @@ const Calendar: React.FC<ICalendarProps> = ({
               src={left as unknown as string}
               alt="left arrow"
               className="calendar__prev"
+              data-testid="prev-button"
             />
           </button>
           <button onClick={onNextButtonClick} className="calendar__button">
@@ -125,6 +128,7 @@ const Calendar: React.FC<ICalendarProps> = ({
               src={right as unknown as string}
               alt="right arrow"
               className="calendar__next"
+              data-testid="next-button"
             />
           </button>
         </div>
@@ -156,7 +160,10 @@ const Calendar: React.FC<ICalendarProps> = ({
 
       <p className="calendar__week-deals">
         Желаете посмотреть планы на неделю?{' '}
-        <span onClick={onOpenWeekTasks} className="calendar__see-more">
+        <span
+          data-testid="open-button"
+          onClick={onOpenWeekTasks}
+          className="calendar__see-more">
           Посмореть
         </span>
       </p>

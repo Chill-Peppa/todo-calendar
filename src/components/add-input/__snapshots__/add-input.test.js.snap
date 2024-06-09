@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should correctly render AddInput 1`] = `
+exports[`AddInput component tests should correctly render AddInput 1`] = `
 <div
   className="modal__add-container"
 >
   <input
     className="modal__input"
+    data-testid="text"
     id="add-input"
     onBlur={[Function]}
     onChange={[Function]}
@@ -16,6 +17,7 @@ exports[`should correctly render AddInput 1`] = `
   />
   <button
     className="modal__add-button"
+    data-testid="add-button"
     onClick={[Function]}
     type="button"
   >

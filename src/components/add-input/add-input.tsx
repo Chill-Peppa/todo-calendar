@@ -44,6 +44,7 @@ const AddInput: FC<AddInputProps> = ({ addNewTodo, selectedDate }) => {
         }
         type="text"
         id="add-input"
+        data-testid="text"
         value={text}
         onChange={handleInputChange}
         onFocus={handleFocus}
@@ -52,6 +53,7 @@ const AddInput: FC<AddInputProps> = ({ addNewTodo, selectedDate }) => {
       />
       <button
         onClick={handleAddTodo}
+        data-testid="add-button"
         type="button"
         className="modal__add-button">
         +

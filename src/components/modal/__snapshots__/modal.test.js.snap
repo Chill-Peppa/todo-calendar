@@ -15,6 +15,7 @@ Array [
       </h2>
       <button
         className="modal__close"
+        data-testid="close-modal"
         onClick={[MockFunction]}
         type="button"
       >
@@ -31,6 +32,7 @@ Array [
   </div>,
   <div
     className="modal__background"
+    data-testid="modal-background"
     onClick={[Function]}
   />,
 ]

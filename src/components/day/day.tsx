@@ -34,6 +34,7 @@ const Day: FC<IDay> = ({
   return (
     <li
       onClick={onOpenTodo}
+      data-testid="day"
       data-date={dataDate}
       className={`calendar__day ${checkDate(dataDate) && 'calendar__day_event'}
                ${item.isHoliday === 1 && 'calendar__day_holiday'} ${

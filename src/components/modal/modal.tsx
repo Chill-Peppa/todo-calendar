@@ -19,7 +19,11 @@ const Modal: React.FC<IModalProps> = ({ children, onClose, title }) => {
       <div className="modal">
         <div className="modal__header">
           <h2 className="modal__title">{title}</h2>
-          <button onClick={onClose} type="button" className="modal__close">
+          <button
+            data-testid="close-modal"
+            onClick={onClose}
+            type="button"
+            className="modal__close">
             <img
               src={close as unknown as string}
               alt="close icon"

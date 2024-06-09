@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render Todo 1`] = `
+<li
+  className="modal__deal"
+>
+  1. test todo
+  <div
+    className="modal__checkbox-container"
+  >
+    <input
+      className="modal__checkbox"
+      id="checkboxid-123"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      className="modal__label"
+      htmlFor="checkboxid-123"
+    />
+    <img
+      alt="delete"
+      className="modal__delete-deal"
+      onClick={[Function]}
+      src="delete.svg"
+    />
+  </div>
+</li>
+`;
